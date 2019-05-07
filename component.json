@@ -1,0 +1,169 @@
+{
+    "title": "ApplicationInsightsManagementClient",
+    "description": "Azure Application Insights client for web test based alerting.",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/azure.com/applicationinsights-webTests_API/2015-05-01/swagger.json",
+    "envVars": {
+        "OAUTH_CLIENT_ID": {
+            "description": "OAuth Client ID"
+        },
+        "OAUTH_CLIENT_SECRET": {
+            "description": "OAuth Client Secret"
+        }
+    },
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://management.azure.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "azure_auth": {
+                "label": "Azure Active Directory OAuth2 Flow.",
+                "viewClass": "OAuthFieldView"
+            }
+        },
+        "oauth2": {
+            "client_id": "{{OAUTH_CLIENT_ID}}",
+            "client_secret": "{{OAUTH_CLIENT_SECRET}}",
+            "auth_uri": "https://login.microsoftonline.com/common/oauth2/authorize"
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "WebTests_List": {
+            "main": "./lib/actions/WebTests_List.js",
+            "title": "Get all Application Insights web test alerts definitions within a subscription.",
+            "description": "Get all Application Insights web test alerts definitions within a subscription.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_List.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_ListByComponent": {
+            "main": "./lib/actions/WebTests_ListByComponent.js",
+            "title": "Get all Application Insights web tests defined for the specified component.",
+            "description": "Get all Application Insights web tests defined for the specified component.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_ListByComponent.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_ListByResourceGroup": {
+            "main": "./lib/actions/WebTests_ListByResourceGroup.js",
+            "title": "Get all Application Insights web tests defined within a specified resource group.",
+            "description": "Get all Application Insights web tests defined within a specified resource group.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_ListByResourceGroup.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_Delete": {
+            "main": "./lib/actions/WebTests_Delete.js",
+            "title": "Deletes an Application Insights web test.",
+            "description": "Deletes an Application Insights web test.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_Delete.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_Get": {
+            "main": "./lib/actions/WebTests_Get.js",
+            "title": "Get a specific Application Insights web test definition.",
+            "description": "Get a specific Application Insights web test definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_Get.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_UpdateTags": {
+            "main": "./lib/actions/WebTests_UpdateTags.js",
+            "title": "Creates or updates an Application Insights web test definition.",
+            "description": "Creates or updates an Application Insights web test definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_UpdateTags.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "WebTests_CreateOrUpdate": {
+            "main": "./lib/actions/WebTests_CreateOrUpdate.js",
+            "title": "Creates or updates an Application Insights web test definition.",
+            "description": "Creates or updates an Application Insights web test definition.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/WebTests_CreateOrUpdate.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

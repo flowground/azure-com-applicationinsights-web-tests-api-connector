@@ -1,0 +1,170 @@
+{
+    "type": "object",
+    "properties": {
+        "resourceGroupName": {
+            "required": true,
+            "type": "string"
+        },
+        "subscriptionId": {
+            "required": true,
+            "type": "string"
+        },
+        "webTestName": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "allOf": [
+                {
+                    "description": "An azure resource object",
+                    "properties": {
+                        "id": {
+                            "description": "Azure resource Id",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "location": {
+                            "description": "Resource location",
+                            "type": "string",
+                            "x-ms-mutability": [
+                                "create",
+                                "read"
+                            ]
+                        },
+                        "name": {
+                            "description": "Azure resource name",
+                            "readOnly": true,
+                            "type": "string"
+                        },
+                        "tags": {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "description": "Resource tags"
+                        },
+                        "type": {
+                            "description": "Azure resource type",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "location"
+                    ],
+                    "x-ms-azure-resource": true,
+                    "type": "object"
+                }
+            ],
+            "description": "An Application Insights web test definition.",
+            "properties": {
+                "kind": {
+                    "default": "ping",
+                    "description": "The kind of web test that this web test watches. Choices are ping and multistep.",
+                    "enum": [
+                        "ping",
+                        "multistep"
+                    ],
+                    "type": "string",
+                    "x-ms-enum": {
+                        "modelAsString": false,
+                        "name": "WebTestKind"
+                    }
+                },
+                "properties": {
+                    "description": "Metadata describing a web test for an Azure resource.",
+                    "x-ms-client-flatten": true,
+                    "properties": {
+                        "Configuration": {
+                            "description": "An XML configuration specification for a WebTest.",
+                            "properties": {
+                                "WebTest": {
+                                    "description": "The XML specification of a WebTest to run against an application.",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "Description": {
+                            "description": "Purpose/user defined descriptive test for this WebTest.",
+                            "type": "string"
+                        },
+                        "Enabled": {
+                            "description": "Is the test actively being monitored.",
+                            "type": "boolean"
+                        },
+                        "Frequency": {
+                            "default": 300,
+                            "description": "Interval in seconds between test runs for this WebTest. Default value is 300.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "Kind": {
+                            "default": "ping",
+                            "description": "The kind of web test this is, valid choices are ping and multistep.",
+                            "enum": [
+                                "ping",
+                                "multistep"
+                            ],
+                            "type": "string",
+                            "x-ms-client-name": "WebTestKind",
+                            "x-ms-enum": {
+                                "modelAsString": false,
+                                "name": "WebTestKind"
+                            }
+                        },
+                        "Locations": {
+                            "description": "A list of where to physically run the tests from to give global coverage for accessibility of your application.",
+                            "items": {
+                                "description": "Geo-physical location to run a web test from. You must specify one or more locations for the test to run from.",
+                                "properties": {
+                                    "Id": {
+                                        "description": "Location ID for the webtest to run from.",
+                                        "type": "string",
+                                        "x-ms-client-name": "location"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        "Name": {
+                            "description": "User defined name if this WebTest.",
+                            "type": "string",
+                            "x-ms-client-name": "WebTestName"
+                        },
+                        "RetryEnabled": {
+                            "description": "Allow for retries should this WebTest fail.",
+                            "type": "boolean"
+                        },
+                        "SyntheticMonitorId": {
+                            "description": "Unique ID of this WebTest. This is typically the same value as the Name field.",
+                            "type": "string"
+                        },
+                        "Timeout": {
+                            "default": 30,
+                            "description": "Seconds until this WebTest will timeout and fail. Default value is 30.",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "provisioningState": {
+                            "description": "Current state of this component, whether or not is has been provisioned within the resource group it is defined. Users cannot change this value but are able to read from it. Values will include Succeeded, Deploying, Canceled, and Failed.",
+                            "readOnly": true,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "Name",
+                        "Kind",
+                        "Locations",
+                        "SyntheticMonitorId"
+                    ]
+                }
+            },
+            "type": "object"
+        },
+        "api_version": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}
